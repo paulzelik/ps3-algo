@@ -26,9 +26,16 @@ public class Groupe {
     public List<Etudiant> getMembres() { return membres; }
     public void setContraintes(List<Contrainte> contraintes) { this.contraintes = contraintes; }
 
+    public void setEtat(String etat) { this.etat = etat; }
+    public void setTailleMax(int tailleMax) { this.tailleMax = tailleMax; }
+    public void setTypeGroupe(String typeGroupe) { this.typeGroupe = typeGroupe; }
+    public void setNomGroupe(String nomGroupe) { this.nomGroupe = nomGroupe; }
+    public void setIdGroupe(String idGroupe) { this.idGroupe = idGroupe; }
 
     public boolean ajouterEtudiant(Etudiant e){
-        
+        if (membres.size() >= tailleMax){
+            return false;
+        }
     }
 
 
