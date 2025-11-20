@@ -1,22 +1,39 @@
+import java.util.List;
+import java.util.function.Predicate;
+
 public class Contrainte {
-
-    private int idContrainte;
+    private String idContrainte;
     private String typeContrainte;
-    private String descriptionContrainte;
-    private String descriptionContraintes;
-    private String parametresContraintes;
+    private String valeurContrainte;
+    private Predicate<Etudiant> regle;
 
-    public Contrainte(int idContrainte, String typeContrainte, String descriptionContrainte,
-                      String descriptionContraintes, String parametresContraintes) {
+    public Contrainte(String idContrainte, String typeContrainte, String valeurContrainte) {
         this.idContrainte = idContrainte;
         this.typeContrainte = typeContrainte;
-        this.descriptionContrainte = descriptionContrainte;
-        this.descriptionContraintes = descriptionContraintes;
-        this.parametresContraintes = parametresContraintes;
+        this.valeurContrainte = valeurContrainte;
+        this.regle = creerRegle(typeContrainte, valeurContrainte);
     }
 
+    private Predicate<Etudiant> creerRegle(String type, String valeur) {
+        switch (type.toUpperCase()) {
+            case "COVOITURAGE":
+                return etudiant -> etudiant.getCovoiturage().equalsIgnoreCase(valeur);
+            case "ANGLOPHONE":
+                return etudiant -> etudiant.isAnglophone() == Boolean.parseBoolean(valeur);
+            case "OPTION":
+                return etudiant -> etudiant.getOptions().contains(valeur);
+            case "GENRE":
+                return etudiant -> etudiant.getGenre().equalsIgnoreCase(valeur);
+            default:
+                return etudiant -> true;
+        }
+    }
 
-    public int getIdContrainte() {
+    public boolean estValidePour(Etudiant etudiant) {
+        return regle.test(etudiant);
+    }
+
+    public String getIdContrainte() {
         return idContrainte;
     }
 
@@ -24,45 +41,7 @@ public class Contrainte {
         return typeContrainte;
     }
 
-    public String getDescriptionContrainte() {
-        return descriptionContrainte;
-    }
-
-    public String getDescriptionContraintes() {
-        return descriptionContraintes;
-    }
-
-    public String getParametresContraintes() {
-        return parametresContraintes;
-    }
-
-
-    public void setIdContrainte(int idContrainte) {
-        this.idContrainte = idContrainte;
-    }
-
-    public void setTypeContrainte(String typeContrainte) {
-        this.typeContrainte = typeContrainte;
-    }
-
-    public void setDescriptionContrainte(String descriptionContrainte) {
-        this.descriptionContrainte = descriptionContrainte;
-    }
-
-    public void setDescriptionContraintes(String descriptionContraintes) {
-        this.descriptionContraintes = descriptionContraintes;
-    }
-
-    public void setParametresContraintes(String parametresContraintes) {
-        this.parametresContraintes = parametresContraintes;
-    }
-
-    public String toString() {
-        return "Contrainte{" +
-                "idContrainte=" + idContrainte +
-                ", typeContrainte='" + typeContrainte + '\'' +
-                ", descriptionContrainte='" + descriptionContrainte + '\'' +
-                ", parametresContraintes='" + parametresContraintes + '\'' +
-                '}';
+    public String getValeurContrainte() {
+        return valeurContrainte;
     }
 }
