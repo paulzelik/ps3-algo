@@ -3,9 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GestionGroupes {
+
+    private static List<Etudiant> listeEtudiants = new ArrayList<>();
+
+    public List<Etudiant> getListeEtudiants() {
+        return listeEtudiants;
+    }
+
     public static void main(String[] args) {
         
-        List<Etudiant> listeEtudiants = new ArrayList<>();
+
         listeEtudiants.add(new Etudiant("Durand", "Alice", "E001", 20, "Paris", true, "F", Arrays.asList("Info", "Anglais")));
         listeEtudiants.add(new Etudiant("Martin", "Bob", "E002", 21, "Paris", false, "M", Arrays.asList("Info")));
         listeEtudiants.add(new Etudiant("Lefevre", "Chloé", "E003", 19, "Versailles", true, "F", Arrays.asList("Marketing", "Anglais")));
@@ -21,6 +28,7 @@ public class GestionGroupes {
         for (Etudiant etudiant : listeEtudiants) {
             /** A compléter avec les algorithmes. */
         }
+
         
         System.out.println("\nMembres de " + groupeCovoit.getNomGroupe() + " : " + groupeCovoit.getMembres());
         System.out.println("Membres de " + groupeStandard.getNomGroupe() + " : " + groupeStandard.getMembres());

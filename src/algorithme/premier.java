@@ -1,14 +1,15 @@
 package algorithme;
 
-import classe.*;
-import contrainte.*;
+import classe.Contrainte;
+import classe.Etudiant;
+import classe.Groupe;
 
 import java.util.*;
 
 public class premier implements StrategieRegroupement{
 
 	@Override
-	public List<Groupe> formerGroupes(List<Etudiant> etudiants, int tailleMin, int tailleMax) {
+	public List<Groupe> formerGroupes(List<Etudiant> etudiants, List<Contrainte> contraintes, int tailleMin, int tailleMax) {
 		if (etudiants == null || etudiants.isEmpty()) {
 			throw new IllegalArgumentException("Aucun étudiant fourni");
 		}
