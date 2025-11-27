@@ -1,75 +1,47 @@
-package classe;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
-public class Covoiturage {
-    private final String idCovoiturage;
-    private final List<Etudiant> participants;
+public class Contrainte {
+    private String idContrainte;
+    private String typeContrainte;
+    private String valeurContrainte;
+    private Predicate<Etudiant> regle;
 
-    public Covoiturage(String idCovoiturage) {
-        if (idCovoiturage == null || idCovoiturage.isEmpty()) {
-            throw new IllegalArgumentException("L'id du covoiturage ne peut pas être vide.");
-        }
-        this.idCovoiturage = idCovoiturage;
-        this.participants = new ArrayList<>();
+    public Contrainte(String idContrainte, String typeContrainte, String valeurContrainte) {
+        this.idContrainte = idContrainte;
+        this.typeContrainte = typeContrainte;
+        this.valeurContrainte = valeurContrainte;
+        this.regle = creerRegle(typeContrainte, valeurContrainte);
     }
 
-    public void ajouterParticipant(Etudiant e) {
-        if (e == null) 
-            throw new IllegalArgumentException("Étudiant nul interdit.");
-        if (!participants.contains(e))
-            participants.add(e);
-    }
-
-    public void retirerParticipant(Etudiant e) {
-        if (!participants.contains(e)) return;
-
-        if (participants.size() == 1) {
-            throw new IllegalStateException("Un covoiturage ne peut pas être vidé : il doit contenir au moins un étudiant."
-            );
-        }
-
-        participants.remove(e);
-
-    }
-
-    public List<Etudiant> getParticipants() {
-        return Collections.unmodifiableList(participants);
-    }
-
-
-    public String getIdCovoiturage() {
-        return idCovoiturage;
-    }
-
-    public boolean contient(Etudiant e) {
-        return participants.contains(e);
-    }
-
-    public boolean chvauche(Covoiturage autre){
-        for (Etudiant e : participants){
-            if (autre.participants.contains(e)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void fusionnerAvec(Covoiturage autre){
-        for (Etudiant e : autre.participants) {
-            if (!participants.contains(e)) {
-                participants.add(e);
-            }
+    private Predicate<Etudiant> creerRegle(String type, String valeur) {
+        switch (type.toUpperCase()) {
+            case "COVOITURAGE":
+                return etudiant -> etudiant.getCovoiturage().equalsIgnoreCase(valeur);
+            case "ANGLOPHONE":
+                return etudiant -> etudiant.isAnglophone() == Boolean.parseBoolean(valeur);
+            case "OPTION":
+                return etudiant -> etudiant.getOptions().contains(valeur);
+            case "GENRE":
+                return etudiant -> etudiant.getGenre().equalsIgnoreCase(valeur);
+            default:
+                return etudiant -> true;
         }
     }
 
-    @Override
-    public String toString() {
-        return "Covoiturage{" +
-                "id='" + idCovoiturage + '\'' +
-                ", participants=" + participants +
-                '}';
+    public boolean estValidePour(Etudiant etudiant) {
+        return regle.test(etudiant);
+    }
+
+    public String getIdContrainte() {
+        return idContrainte;
+    }
+
+    public String getTypeContrainte() {
+        return typeContrainte;
+    }
+
+    public String getValeurContrainte() {
+        return valeurContrainte;
     }
 }
