@@ -9,11 +9,11 @@ public class Etudiant {
     private String genre;
     private String typeBac;
     private String statut;
-    private boolean hasCompany;
     private double moyenne;
+    private String ville;
 
     public Etudiant(String id, String nom, String prenom, double moyenne, String genre,
-            String typeBac, String statut, boolean hasCompany) {
+            String typeBac, String ville) {
 	if (id == null || id.isEmpty()) throw new IllegalArgumentException("id étudiant invalide");
 		this.id = id;
 		this.nom = nom;
@@ -21,8 +21,7 @@ public class Etudiant {
 		this.moyenne = moyenne;
 		this.genre = genre;
 		this.typeBac = typeBac;
-		this.statut = statut;
-		this.hasCompany = hasCompany;
+        this.ville = ville;
     }
     
     public String getId() { return id; }
@@ -31,16 +30,14 @@ public class Etudiant {
     public double getMoyenne() { return moyenne; }
     public String getGenre() { return genre; }
     public String getTypeBac() { return typeBac; }
-    public String getStatut() { return statut; }
-    public boolean hasCompany() { return hasCompany; }
+    public String getVille() { return ville; }
+    
     
 
     @Override
     public String toString() {
         return id + ":" + nom 
-        		+ " (moy=" + moyenne + ", " 
-        		+ statut 
-        		+ (hasCompany ? ", en entreprise" : ", sans entreprise") 
+        		+ " (moy=" + moyenne
         		+ ")";
     }
     
