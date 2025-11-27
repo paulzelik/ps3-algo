@@ -56,4 +56,19 @@ public class Etudiant {
     public int hashCode() {
     	return Objects.hash(id);
     }
+
+    public boolean isAnglophone() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isAnglophone'");
+    }
+
+    public String getOptions() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getOptions'");
+    }
+
+    public String getCovoiturage() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCovoiturage'");
+    }
 }

@@ -3,6 +3,8 @@ package classe;
 import java.util.List;
 import java.util.ArrayList;
 
+import contrainte.*;
+
 public class CreationGroupe {
 	private List<Etudiant> etudiants;
     private List<Contrainte> contraintes;

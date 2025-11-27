@@ -34,6 +34,10 @@ public class Groupe {
         if (membres.isEmpty()) return 0.0;
         return membres.stream().mapToDouble(Etudiant::getMoyenne).average().orElse(0.0);
     }
+
+    public int nbSansEntreprise() {
+        return (int) membres.stream().filter(s -> !s.hasCompany()).count();
+    }
     
     @Override
     public String toString() {
