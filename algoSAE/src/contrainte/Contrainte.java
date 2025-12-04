@@ -12,6 +12,7 @@ public class Contrainte {
     private String valeurContrainte;
     private Predicate<Etudiant> regle;
 
+    // Constructeur
     public Contrainte(String idContrainte, String typeContrainte, String valeurContrainte) {
         this.idContrainte = idContrainte;
         this.typeContrainte = typeContrainte;
@@ -57,17 +58,41 @@ public class Contrainte {
         switch (typeContrainte.toUpperCase()){
             case "COVOITURAGE":
                 return verifierAjoutCovoiturage(e, g);
+            case "ANGLOPHONE":
+                return verifierAjoutAnglophone(e, g);
+
+            case "OPTION":
+                return verifierAjoutOption(e, g);
+
+            case "GENRE":
+                return verifierAjoutGenre(e, g);
         }
+        return true;
     }
 
     public boolean verifierAjoutCovoiturage(Etudiant e, Groupe g){
         if (e.getCovoiturage() == null) return false;
-        String covoitId = e.getCovoiturage();
+        Covoiturage covoitId = e.getCovoiturage();
         for (Etudiant membre : g.getMembres()){
-            if (membre.getCovoiturage() != null && !membre.getCovoiturage().equalsIgnoreCase(covoitId)) {
+            if (membre.getCovoiturage() != null && !membre.getCovoiturage().equals(covoitId)) {
                 return false;
             }
         }
+        return true;
+    }
+
+    public boolean verifierAjoutAnglophone(Etudiant e, Groupe g){
+        if (e.isAnglophone()){
+            return g.Anglophone();
+        }
+        return true;
+    }
+
+    public boolean verifierAjoutOption(Etudiant e, Groupe g){
+        return true;
+    }
+
+    private boolean verifierAjoutGenre(Etudiant e, Groupe g) {
         return true;
     }
     

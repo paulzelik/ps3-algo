@@ -5,10 +5,12 @@ import java.util.*;
 public class Groupe {
 	private String id;
 	private List<Etudiant> membres = new ArrayList<>();
+    private boolean groupeAnglophone;
 	
-	public Groupe(String id) {
+	public Groupe(String id, boolean groupeAnglophone) {
         if (id == null || id.isEmpty()) throw new IllegalArgumentException("id groupe invalide");
         this.id = id;
+        this.groupeAnglophone = groupeAnglophone;
     }
 	
 	public String getId() { return id; }
@@ -29,6 +31,14 @@ public class Groupe {
     public int taille() { 
     	return membres.size(); 
     }
+
+    public boolean Anglophone() {
+        return this.groupeAnglophone;
+    }
+
+    public void setAnglophone(boolean anglophone){
+        this.groupeAnglophone = anglophone;
+    }
     
     public double moyenneGroupe() {
         if (membres.isEmpty()) return 0.0;
@@ -46,4 +56,6 @@ public class Groupe {
         		+ taille() + ", moy=" 
         		+ String.format("%.2f", moyenneGroupe()) + "}";
     }
+
+    
 }
