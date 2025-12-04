@@ -16,7 +16,6 @@ public class Etudiant {
     private String typeBac;
     
     private String statut;
-    private boolean hasCompany;
     private double moyenne;
     private boolean demAnglophone;
     private List<String> options; 
@@ -132,9 +131,7 @@ public class Etudiant {
     @Override
     public String toString() {
         return id + ":" + nom 
-        		+ " (moy=" + moyenne + ", " 
-        		+ statut 
-        		+ (hasCompany ? ", en entreprise" : ", sans entreprise") 
+        		+ " (moy=" + moyenne
         		+ ")";
     }
     
