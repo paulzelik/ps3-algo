@@ -1,9 +1,8 @@
-package contrainte;
+package classe;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import classe.*;
 import algorithme.*;
 
 public class Contrainte {

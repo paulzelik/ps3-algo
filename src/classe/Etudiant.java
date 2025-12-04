@@ -20,6 +20,7 @@ public class Etudiant {
     private boolean demAnglophone;
     private List<String> options; 
     private Covoiturage covoiturage;
+    private boolean hasCompany;
 
     private final Map<String, Double> notes;
 
