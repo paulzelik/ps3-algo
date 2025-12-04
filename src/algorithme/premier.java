@@ -9,11 +9,8 @@ import java.util.*;
 public class premier implements StrategieRegroupement{
 
 	@Override
-<<<<<<< HEAD:algoSAE/src/algorithme/premier.java
-	public List<Groupe> formerGroupes(List<Etudiant> etudiants, int tailleMin, int tailleMax, List<Contrainte> contraintes) {
-=======
+
 	public List<Groupe> formerGroupes(List<Etudiant> etudiants, List<Contrainte> contraintes, int tailleMin, int tailleMax) {
->>>>>>> main:src/algorithme/premier.java
 		if (etudiants == null || etudiants.isEmpty()) {
 			throw new IllegalArgumentException("Aucun étudiant fourni");
 		}
