@@ -50,5 +50,25 @@ public class Contrainte {
         return valeurContrainte;
     }
 
+    public boolean verifierAjout(Etudiant e, Groupe g){
+        if (!regle.test(e)){
+            return false;
+        }
+        switch (typeContrainte.toUpperCase()){
+            case "COVOITURAGE":
+                return verifierAjoutCovoiturage(e, g);
+        }
+    }
+
+    public boolean verifierAjoutCovoiturage(Etudiant e, Groupe g){
+        if (e.getCovoiturage() == null) return false;
+        String covoitId = e.getCovoiturage();
+        for (Etudiant membre : g.getMembres()){
+            if (membre.getCovoiturage() != null && !membre.getCovoiturage().equalsIgnoreCase(covoitId)) {
+                return false;
+            }
+        }
+        return true;
+    }
     
 }

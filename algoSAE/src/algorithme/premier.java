@@ -55,4 +55,11 @@ public class premier implements StrategieRegroupement{
 	}
 	}
 
+	@Override
+	public List<Groupe> formerGroupes(List<Etudiant> etudiants, int tailleMin, int tailleMax,
+			List<Contrainte> contraintes, Map<String, Object> param) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'formerGroupes'");
+	}
+
 }

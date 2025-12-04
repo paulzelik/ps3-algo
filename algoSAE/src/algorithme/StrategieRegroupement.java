@@ -1,8 +1,10 @@
 package algorithme;
 
 import classe.*;
+import contrainte.*;
+
 import java.util.*;
 
 public interface StrategieRegroupement {
-	List<Groupe> formerGroupes(List<Etudiant> etudiants, int tailleMin, int tailleMax, List<contrainte.Contrainte> contraintes);
+	List<Groupe> formerGroupes(List<Etudiant> etudiants, int tailleMin, int tailleMax, List<contrainte.Contrainte> contraintes, Map<String, Object> param) throws Exception;
 }
